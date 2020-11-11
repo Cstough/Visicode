@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="VisiCode project:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/VisiCode_project_jar</output-path>
+    <root id="archive" name="VisiCode project_jar.jar">
+      <element id="module-output" name="VisiCode project" />
+    </root>
+  </artifact>
+</component>
