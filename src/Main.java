@@ -7,10 +7,10 @@ public class Main {
     public static void main(String[] args) {
         Game.Init();
 
-        Game.Config().SetScreenSize(new Dimension(300, 200));
-        Game.Config().SetScreenScale(4);
+        Game.Config().SetScreenSize(new Dimension(600, 400));
+        Game.Config().SetScreenScale(2);
 
-        Game.AddGameObject(new TestObject(0, 0));
+        Game.AddGameObject(new TestObject());
 
         Game.Run();
     }

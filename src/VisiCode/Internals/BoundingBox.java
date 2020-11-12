@@ -2,7 +2,7 @@ package VisiCode.Internals;
 
 public class BoundingBox {
 
-    private Vector2 center, halfSize;
+    public Vector2 center, halfSize;
 
     public BoundingBox() {
         this.center = new Vector2();
@@ -19,4 +19,8 @@ public class BoundingBox {
         this.halfSize = new Vector2(hw, hh);
     }
 
+    public boolean ContainsPoint(Vector2 p) {
+        return p.x >= this.center.x - this.halfSize.x && p.x <= this.center.x + this.halfSize.x &&
+                p.y >= this.center.y - this.halfSize.y && p.y <= this.center.y + this.halfSize.y;
+    }
 }

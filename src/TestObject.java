@@ -1,32 +1,30 @@
+import VisiCode.DataStructures.PointQuadTree;
 import VisiCode.Game;
-import VisiCode.Internals.Bitmap;
+import VisiCode.Internals.*;
 import VisiCode.Internals.Color;
-import VisiCode.Internals.GameObject;
 import VisiCode.Internals.Graphics;
 
 import java.awt.*;
 
 public class TestObject extends GameObject {
 
-    Bitmap sprite;
+    PointQuadTree<Entity> qt;
 
-    float x, y;
-
-    public TestObject(int x, int y) {
-        this.x = x;
-        this.y = y;
-        sprite = Bitmap.LoadSprite("src/test.png");
+    public TestObject() {
+        qt = new PointQuadTree<Entity>(new Vector2(300, 200), new Vector2(300, 200), 2);
     }
 
     @Override
     public void Update(float deltaTime) {
-        Point p = Game.Input().GetMousePosition();
-        x = p.x;
-        y = p.y;
+        if(Game.Input().GetLeftMouseDown()) {
+            Point p = Game.Input().GetMousePosition();
+            Entity e = new Entity(new Vector2(p.x, p.y));
+            qt.Insert(e);
+        }
     }
 
     @Override
     public void Render(Graphics g) {
-        g.DrawSprite(sprite, x, y);
+        qt.Render(g, Color.WHITE);
     }
 }

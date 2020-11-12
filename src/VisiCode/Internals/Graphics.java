@@ -47,4 +47,22 @@ public class Graphics {
             frameBuffer.DrawPixel((int)x2, (int)y2-i, comps);
         }
     }
+
+    public void DrawRect(Vector2 center, Vector2 halfSize, Color c) {
+        byte[] comps = c.getBytes();
+
+        int startX = (int)(center.x - halfSize.x);
+        int endX = (int)(center.x + halfSize.x) - 1;
+        int startY = (int)(center.y - halfSize.y);
+        int endY = (int)(center.y + halfSize.y) - 1;
+
+        for(int i = 0; i < halfSize.x * 2; i++) {
+            frameBuffer.DrawPixel(startX + i, startY, comps);
+            frameBuffer.DrawPixel(endX - i, endY, comps);
+        }
+        for(int i = 0; i < halfSize.y * 2; i++) {
+            frameBuffer.DrawPixel(startX, startY + i, comps);
+            frameBuffer.DrawPixel(endX, endY - i, comps);
+        }
+    }
 }

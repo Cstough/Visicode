@@ -1,6 +1,6 @@
 package VisiCode.Internals;
 
-public abstract class GameObject {
+public abstract class GameObject extends Entity{
 
     public abstract void Update(float deltaTime);
 
