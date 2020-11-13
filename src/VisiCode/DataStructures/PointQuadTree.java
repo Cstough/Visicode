@@ -29,7 +29,7 @@ public class PointQuadTree<T extends Entity> implements QuadTree<T> {
 
     @Override
     public void Insert(T node) {
-        if(divided) {
+        if(this.divided) {
             //determine which subtree the node is contained in
             if(nw.boundingBox.ContainsPoint(node.position)) {nw.Insert(node);}
             else if(ne.boundingBox.ContainsPoint(node.position)) {ne.Insert(node);}
@@ -39,7 +39,7 @@ public class PointQuadTree<T extends Entity> implements QuadTree<T> {
                 System.out.println("Insertion Error");
             }
         }
-        else if(entities.size() + 1 > capacity) {
+        else if(this.entities.size() + 1 > this.capacity) {
             Subdivide();
             //determine which subtree the node is contained in
             if(nw.boundingBox.ContainsPoint(node.position)) {nw.Insert(node);}
@@ -111,7 +111,7 @@ public class PointQuadTree<T extends Entity> implements QuadTree<T> {
     }
 
     public void Render(Graphics g, Color c) {
-        //g.DrawRect(this.boundingBox.center, this.boundingBox.halfSize, c); //draw box
+        g.DrawRect(this.boundingBox.center, this.boundingBox.halfSize, c); //draw box
 
         for(T nodes : entities) {
             g.DrawPoint(nodes.position.x, nodes.position.y, Color.GREEN);

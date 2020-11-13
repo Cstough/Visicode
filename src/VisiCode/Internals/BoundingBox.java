@@ -24,6 +24,13 @@ public class BoundingBox {
                 p.y >= this.center.y - this.halfSize.y && p.y <= this.center.y + this.halfSize.y;
     }
 
+    public boolean ContainsBox(BoundingBox b) {
+        return this.center.x - this.halfSize.x <= b.center.x - b.halfSize.x &&
+                this.center.x + this.halfSize.x >= b.center.x + b.halfSize.x &&
+                this.center.y - this.halfSize.y <= b.center.y - b.halfSize.y &&
+                this.center.y + this.halfSize.y >= b.center.y + b.halfSize.y;
+    }
+
     public boolean Intersects(BoundingBox b) {
         return this.center.x - this.halfSize.x <= b.center.x + b.halfSize.x &&
                 this.center.x + this.halfSize.x >= b.center.x - b.halfSize.x &&

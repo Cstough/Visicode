@@ -10,7 +10,7 @@ public class Main {
         Game.Config().SetScreenSize(new Dimension(1200, 700));
         Game.Config().SetScreenScale(1);
 
-        Game.AddGameObject(new TestObject());
+        Game.AddGameObject(new TestObjectManager());
 
         Game.Run();
     }
