@@ -1,5 +1,7 @@
 package VisiCode.Internals;
 
+import java.awt.*;
+
 public class Vector2 {
     public float x, y;
 
@@ -39,5 +41,9 @@ public class Vector2 {
     public void Scale(float m) {
         x *= m;
         y *= m;
+    }
+
+    public static Vector2 Dim2Vec2(Dimension d) {
+        return new Vector2(d.width, d.height);
     }
 }

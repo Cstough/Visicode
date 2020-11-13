@@ -57,11 +57,61 @@ public class PointQuadTree<T extends Entity> implements QuadTree<T> {
 
     @Override
     public List<T> Query(BoundingBox b) {
-        return null;
+        //recursively check for all boundingboxes that intersect with b
+
+        List<T> l = new ArrayList<T>();
+
+        if(this.boundingBox.Intersects(b)) {
+
+            for(T node : this.entities) {
+                if(b.ContainsPoint(node.position)) {
+                    l.add(node);
+                }
+            }
+
+            if(divided) {
+                if (nw.boundingBox.Intersects(b)) {
+                    nw.Query_recurse(b, l);
+                }
+                if (ne.boundingBox.Intersects(b)) {
+                    ne.Query_recurse(b, l);
+                }
+                if (sw.boundingBox.Intersects(b)) {
+                    sw.Query_recurse(b, l);
+                }
+                if (se.boundingBox.Intersects(b)) {
+                    se.Query_recurse(b, l);
+                }
+            }
+        }
+        return l;
+    }
+
+    private void Query_recurse(BoundingBox b, List<T> l) {
+        for(T node : this.entities) {
+            if(b.ContainsPoint(node.position)) {
+                l.add(node);
+            }
+        }
+
+        if(divided) {
+            if (nw.boundingBox.Intersects(b)) {
+                nw.Query_recurse(b, l);
+            }
+            if (ne.boundingBox.Intersects(b)) {
+                ne.Query_recurse(b, l);
+            }
+            if (sw.boundingBox.Intersects(b)) {
+                sw.Query_recurse(b, l);
+            }
+            if (se.boundingBox.Intersects(b)) {
+                se.Query_recurse(b, l);
+            }
+        }
     }
 
     public void Render(Graphics g, Color c) {
-        g.DrawRect(this.boundingBox.center, this.boundingBox.halfSize, c); //draw box
+        //g.DrawRect(this.boundingBox.center, this.boundingBox.halfSize, c); //draw box
 
         for(T nodes : entities) {
             g.DrawPoint(nodes.position.x, nodes.position.y, Color.GREEN);
@@ -73,8 +123,6 @@ public class PointQuadTree<T extends Entity> implements QuadTree<T> {
         if(se != null) {se.Render(g, c);}
     }
 
-    //Subdivide will divide this QuadTree bounds into 4 smaller QuadTrees using the nw, ne, sw, se references
-    //TODO: Create a Subdivide function
     public void Subdivide() {
         this.divided = true;
         this.nw = new PointQuadTree<T>(new Vector2(this.boundingBox.center.x - this.boundingBox.halfSize.x/2f, this.boundingBox.center.y - this.boundingBox.halfSize.y/2f),
