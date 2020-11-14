@@ -1,3 +1,4 @@
+import VisiCode.DataStructures.BoundingBoxQuadTree;
 import VisiCode.DataStructures.PointQuadTree;
 import VisiCode.Game;
 import VisiCode.Internals.*;
