@@ -13,7 +13,7 @@ public class TestObjectManager extends GameObject {
     Random rand;
 
     public TestObjectManager() {
-        qt = new PointQuadTree<TestObject>(Vector2.Dim2Vec2(Game.Config().GetScreenSize()).Mul(0.5f), Vector2.Dim2Vec2(Game.Config().GetScreenSize()).Mul(1), 2);
+        qt = new PointQuadTree<TestObject>(Vector2.Dim2Vec2(Game.Config().GetScreenSize()).Mul(0.5f), Vector2.Dim2Vec2(Game.Config().GetScreenSize()).Mul(1), 5);
         objects = new ArrayList<TestObject>();
         rand = new Random();
         for(int i = 0; i < 50; i++) {

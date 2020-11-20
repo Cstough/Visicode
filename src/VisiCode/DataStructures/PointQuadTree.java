@@ -27,6 +27,13 @@ public class PointQuadTree<T extends Entity> implements QuadTree<T> {
         divided = false;
     }
 
+    public PointQuadTree(BoundingBox boundingBox, int capacity) {
+        this.capacity = capacity;
+        entities = new ArrayList<T>();
+        this.boundingBox = boundingBox;
+        divided = false;
+    }
+
     @Override
     public void Insert(T node) {
         if(this.divided) {

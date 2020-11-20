@@ -12,12 +12,12 @@ public class Game {
 
     private static Input input;
     private static Config config;
-
     private static Display display;
+
     private static final float FRAME_RATE = 30.0f;
     private static Timer timer = null;
     private static float deltaTime;
-    private static JFrame frame;
+    public static JFrame frame;
 
     private static ArrayList<GameObject> objects;
 
@@ -45,7 +45,12 @@ public class Game {
         frame.setAutoRequestFocus(true);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setVisible(true);
-        //TODO: ADD MOUSE CURSOR HIDING SUPPORT
+
+        if(Game.Config().getCursorState()) {
+            BufferedImage cursor = new BufferedImage(16, 16, BufferedImage.TYPE_INT_ARGB);
+            Cursor blankCursor = Toolkit.getDefaultToolkit().createCustomCursor(cursor, new Point(0, 0), "blank cursor");
+            frame.getContentPane().setCursor(blankCursor);
+        }
 
         display.CreateGraphics();
 
@@ -100,6 +105,8 @@ public class Game {
     public static Config Config() {
         return config;
     }
+
+    public static Display Display() {return display;}
 
     private static void sync() {
         float loopSlot = 1f / FRAME_RATE;

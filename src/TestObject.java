@@ -30,7 +30,7 @@ public class TestObject extends GameObject {
     public void Update(float deltaTime) {
         this.position.Add(new Vector2(parent.rand.nextInt(5) - 2, parent.rand.nextInt(5) - 2));
         this.boundingBox.center = this.position;
-        //this.checkingBox.center = this.position;
+        this.checkingBox.center = this.position;
         List<TestObject> collisions = parent.qt.Query(this.checkingBox);
         this.colliding = false;
 

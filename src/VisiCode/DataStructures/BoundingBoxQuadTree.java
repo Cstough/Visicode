@@ -30,7 +30,7 @@ public class BoundingBoxQuadTree<T extends Entity> implements QuadTree<T>{
     @Override
     public void Insert(T node) {
         //works the same as PointQuadTree except the entity being inserted is sorted by the smallest quadtree that the entities BoundingBox fits into
-        if(this.divided) {
+        /*if(this.divided) {
             //determine which subtree the node is contained in
             if(nw.boundingBox.Intersects(node.boundingBox)) {nw.Insert(node);}
             else if(ne.boundingBox.Intersects(node.boundingBox)) {ne.Insert(node);}
@@ -53,7 +53,7 @@ public class BoundingBoxQuadTree<T extends Entity> implements QuadTree<T>{
         }
         else {
             entities.add(node);
-        }
+        }*/
     }
 
     @Override

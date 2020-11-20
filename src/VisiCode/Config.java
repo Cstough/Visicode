@@ -50,7 +50,7 @@ public class Config {
         return clearColor;
     }
 
-    public void hideCursor(boolean hide) {
+    public void HideCursor(boolean hide) {
         this.hideCursor = hide;
     }
 
